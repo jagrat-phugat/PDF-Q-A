@@ -12,7 +12,7 @@ if not api_key:
 genai.configure(api_key=api_key)
 
 # Use only the free Gemini model
-model = genai.GenerativeModel("models/gemini-pro")
+model = genai.GenerativeModel("models/gemini-2.0-flash")
 
 # Setup embedding model once globally
 Settings.embed_model = HuggingFaceEmbedding(model_name="sentence-transformers/all-MiniLM-L6-v2")
