@@ -1,0 +1,221 @@
+/* === Reset and base styles === */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 3rem 1rem;
+  color: #eee;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: #000;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* Animated gradient overlay */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: linear-gradient(270deg, #1f1f1f, #111, #1f1f1f, #000);
+  background-size: 800% 800%;
+  animation: gradientShift 25s ease infinite;
+  z-index: -1;
+  opacity: 0.3;
+}
+
+/* Subtle floating particles */
+body::after {
+  content: "";
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  pointer-events: none;
+  background: radial-gradient(circle, rgba(255,255,255,0.05) 2%, transparent 10%) 0 0 / 50px 50px repeat;
+  animation: particlesFloat 60s linear infinite;
+  z-index: -1;
+  opacity: 0.15;
+}
+
+/* Animations */
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes particlesFloat {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 50px 50px;
+  }
+}
+
+
+/* === Main container === */
+.app-container {
+  max-width: 480px;
+  width: 100%;
+  background: rgba(25, 25, 30, 0.85);
+  border-radius: 16px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.7);
+  padding: 2rem 2.5rem;
+  animation: fadeInUp 0.8s ease forwards;
+}
+
+/* === Cards/Sections === */
+.card {
+  background: rgba(40, 40, 50, 0.75);
+  padding: 1.8rem 2rem;
+  border-radius: 12px;
+  margin-bottom: 2rem;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+  transition: transform 0.3s ease;
+  cursor: default;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+/* === Headings === */
+h2 {
+  margin-bottom: 1rem;
+  font-weight: 700;
+  color: #f0f0f0;
+  text-align: center;
+  text-shadow: 0 1px 5px rgba(255, 255, 255, 0.2);
+}
+
+/* === Inputs === */
+.file-input,
+.question-input {
+  width: 100%;
+  padding: 0.85rem 1rem;
+  border-radius: 10px;
+  border: none;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  background: rgba(60, 60, 70, 0.85);
+  color: #eee;
+  outline: none;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+  user-select: none;
+}
+
+.file-input:hover,
+.question-input:hover {
+  background: rgba(80, 80, 90, 1);
+  box-shadow: 0 0 8px #667eea88;
+}
+
+.file-input:disabled,
+.question-input:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+/* === Buttons === */
+.btn {
+  display: block;
+  width: 100%;
+  padding: 0.95rem 0;
+  font-weight: 600;
+  font-size: 1.1rem;
+  border-radius: 12px;
+  border: none;
+  background: #ff6a00;
+  color: #fff;
+  cursor: pointer;
+  box-shadow: 0 4px 15px #ff6a00cc;
+  transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+  user-select: none;
+}
+
+.btn:hover:not(:disabled) {
+  background-color: #e65c00;
+  transform: scale(1.05);
+  box-shadow: 0 6px 20px #e65c0088;
+}
+
+.btn:disabled {
+  background-color: #ff6a0080;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+/* === Answer Section === */
+.answer-section {
+  background: rgba(50, 50, 65, 0.85);
+  border-radius: 14px;
+  padding: 1.5rem 2rem;
+  color: #ddd;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
+  font-size: 1.1rem;
+  line-height: 1.5;
+  animation: fadeInUp 0.6s ease forwards;
+  white-space: pre-line; /* preserve line breaks if any */
+}
+
+/* === Error Messages === */
+.error-message {
+  background: rgba(255, 69, 58, 0.9);
+  color: white;
+  padding: 1rem 1.3rem;
+  border-radius: 10px;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  animation: fadeIn 0.5s ease forwards;
+  box-shadow: 0 0 15px rgba(255, 69, 58, 0.7);
+}
+
+/* === Animations === */
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+/* === Responsive tweaks === */
+@media (max-width: 520px) {
+  .app-container {
+    padding: 1.5rem 1.5rem;
+  }
+
+  .btn {
+    font-size: 1rem;
+  }
+}
